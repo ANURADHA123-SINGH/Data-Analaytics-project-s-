@@ -1,0 +1,32 @@
+-- 1. Total sales & profit by region
+
+SELECT Region, SUM(Sales) AS Total_Sales, SUM(Profit) AS Total_Profit
+FROM sales_data
+GROUP BY Region
+ORDER BY Total_Sales DESC;
+
+-- 2. Top 5 customers by spend
+SELECT "Customer Segment", SUM(Sales) AS Total_Spend
+FROM sales_data
+GROUP BY "Customer Segment"
+ORDER BY Total_Spend DESC
+LIMIT 5;
+
+-- 3. Monthly sales trend
+SELECT DATE_FORMAT(STR_TO_DATE("Order Date", '%Y-%m-%d'), '%Y-%m') AS Month,
+       SUM(Sales) AS Monthly_Sales
+FROM sales_data
+GROUP BY Month
+ORDER BY Month;
+
+-- 4. Products with highest profit margin
+SELECT Product, ROUND(SUM(Profit)/SUM(Sales)*100, 2) AS Profit_Margin_Percent
+FROM sales_data
+GROUP BY Product
+ORDER BY Profit_Margin_Percent DESC
+LIMIT 5;
+-- 5. Average order value by payment mode
+SELECT "Payment Mode", ROUND(AVG(Sales), 2) AS Avg_Order_Value
+FROM sales_data
+GROUP BY "Payment Mode"
+ORDER BY Avg_Order_Value DESC;
