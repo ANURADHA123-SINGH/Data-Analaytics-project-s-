@@ -1,2 +1,2 @@
-# Data Analaytics
-All data analytics project during my training 
+# Data Analytics
+My data analytics project's.
